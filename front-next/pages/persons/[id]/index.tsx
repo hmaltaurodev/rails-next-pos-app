@@ -1,13 +1,15 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import FullMoonAppBar from "../../../src/components/FullMoonAppBar";
-import PersonService from "../../../src/services/PersonService";
-import StyledPaper from "../../../src/components/StyledPaper";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import StyledPaper from '../../../src/components/StyledPaper';
+import ROUTES from '../../../src/config/routes';
+import PersonService from '../../../src/services/PersonService';
+import formatDate from '../../../src/utils/formatDate';
+import styles from '../../../styles/Pages.module.css';
 
 //MUI
-import { Grid, Card, CardContent, LinearProgress, Typography, Divider } from '@mui/material';
+import { Button, Grid, LinearProgress, Typography } from '@mui/material';
 import { Container } from '@mui/system';
-import formatDate from "../../../src/utils/formatDate";
 
 function ShowPerson() {
   const router = useRouter();
@@ -15,7 +17,7 @@ function ShowPerson() {
   const [person, setPerson] = useState(Object);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getPersons = async (id: number) => {
+  const getPerson = async (id: number) => {
     const data = await PersonService.getById(id);
     setPerson(data);
   }
@@ -23,45 +25,52 @@ function ShowPerson() {
   useEffect(() => {
     if (id) {
       document.title = `Showing Person ${id}`;
-      getPersons(Number(id)).then(() => {
+      getPerson(Number(id)).then(() => {
         setIsLoading(false);
       });
     }
   }, [id]);
 
-  if (isLoading)
-    return (
-      <>
-        <FullMoonAppBar />
-        <LinearProgress />
-      </>
-    );
+  if (isLoading) return <LinearProgress />;
 
   return (
-    <>
-      <FullMoonAppBar />
-      <Container>
-        <Grid container direction="column" mt={2} spacing={2}>
+    <Container>
+      <Grid container direction='column' mt={2} spacing={2}>
+        <Grid container item spacing={2}>
           <Grid item>
-            <StyledPaper>
-              <Typography variant="h5">
-                {person.id} - {person.name}
-              </Typography>
-            </StyledPaper>
+            <Typography variant='h5'>
+              Showing Person {id}
+            </Typography>
           </Grid>
           <Grid item>
-            <StyledPaper>
-              <Typography component="div" variant="body2" color="text.secondary">
-                Created At: {formatDate(person.created_at)}
-              </Typography>
-              <Typography component="div" variant="body2" color="text.secondary">
-                Updated At: {formatDate(person.updated_at)}
-              </Typography>
-            </StyledPaper>
+            <Link className={styles.link} href={{ pathname: ROUTES.persons.root }}>
+              <Button variant='contained' color='error' size='small'>
+                <Typography sx={{ color: 'white' }}>
+                  Return
+                </Typography>
+              </Button>
+            </Link>
           </Grid>
         </Grid>
-      </Container>
-    </>
+        <Grid item>
+          <StyledPaper>
+            <Typography variant='h5'>
+              {person.name}
+            </Typography>
+          </StyledPaper>
+        </Grid>
+        <Grid item>
+          <StyledPaper>
+            <Typography component='div' variant='body2' color='text.secondary'>
+              Created At: {formatDate(person.created_at)}
+            </Typography>
+            <Typography component='div' variant='body2' color='text.secondary'>
+              Updated At: {formatDate(person.updated_at)}
+            </Typography>
+          </StyledPaper>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 

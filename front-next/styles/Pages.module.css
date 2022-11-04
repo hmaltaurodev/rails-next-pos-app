@@ -1,3 +1,19 @@
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 4rem;
+}
+
+.image {
+  margin: 4rem;
+}
+
 .link {
   text-decoration: none;
 }

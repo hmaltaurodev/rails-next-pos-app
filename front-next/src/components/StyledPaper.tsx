@@ -5,7 +5,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(2),
   width: 400,
-  color: theme.palette.text.primary,
+  color: theme.palette.text.secondary,
 }));
 
 export default StyledPaper;

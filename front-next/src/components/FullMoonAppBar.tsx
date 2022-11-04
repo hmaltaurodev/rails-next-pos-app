@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from "next/link";
+import Link from 'next/link';
 import styles from '../../styles/Pages.module.css';
 import { AppBar, Toolbar, IconButton, Container, Button, Typography } from '@mui/material';
 
@@ -20,18 +20,18 @@ function FullMoonAppBar() {
   ];
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position='static'>
+      <Container maxWidth='xl'>
         <Toolbar disableGutters>
           <Link href='/'>
             <IconButton>
-              <Image src="/fullmoon.svg" alt="Full Moon Index" width={40} height={40}/>
+              <Image src='/fullmoon.svg' alt='Full Moon Index' width={40} height={40}/>
             </IconButton>
           </Link>
           {pages.map((page) => (
             <Link className={styles.link} key={page.title} href={page.route}>
               <Button>
-                <Typography sx={{ color: 'white', fontWeight: 'bold' }}>
+                <Typography sx={{ color: 'white' }}>
                   {page.title}
                 </Typography>
               </Button>

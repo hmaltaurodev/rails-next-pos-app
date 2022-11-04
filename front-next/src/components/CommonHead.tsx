@@ -8,7 +8,7 @@ function CommonHead({ title }: CommonHeadProps) {
   return (
     <Head>
       <title>{title}</title>
-      <link rel="icon" href="/favicon.png" />
+      <link rel='icon' href='/favicon.png' />
     </Head>
   );
 }
