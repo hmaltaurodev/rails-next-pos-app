@@ -3,7 +3,7 @@ class Api::V1::TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all.order(completed: :asc)
+    @tasks = Task.all.order(is_completed: :asc)
 
     render json: @tasks, include: [:category, :person_in_charge]
   end
@@ -35,7 +35,7 @@ class Api::V1::TasksController < ApplicationController
 
   # PATCH /tasks/complete/1
   def set_completed
-    @task.completed = true
+    @task.is_completed = true
 
     if @task.save!
       render json: @task, include: [:category, :person_in_charge]
@@ -46,7 +46,7 @@ class Api::V1::TasksController < ApplicationController
 
   # PATCH /tasks/todo/1
   def set_todo
-    @task.completed = false
+    @task.is_completed = false
 
     if @task.save!
       render json: @task, include: [:category, :person_in_charge]
@@ -68,6 +68,6 @@ class Api::V1::TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:completed, :description, :category_id, :person_in_charge_id)
+      params.require(:task).permit(:is_completed, :description, :category_id, :person_in_charge_id)
     end
 end

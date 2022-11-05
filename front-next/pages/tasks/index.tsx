@@ -42,12 +42,12 @@ function TaskList() {
         .then((data) => {
           getTasks().then(() => {
             setIsLoading(false);
-            toast.info('Task marked as completeds sucessfully!');
+            toast.info('Task marked as completed sucessfully!');
           });
         })
         .catch((e) => {
           setIsLoading(false);
-          toast.error(`Error when mark task as completeds: ${e.message}`);
+          toast.error(`Error when mark task as completed: ${e.message}`);
         });
     }
     else {
@@ -135,8 +135,8 @@ function TaskList() {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell align='center'>
                       <Checkbox
-                        onChange={e => { toogleTask(task.id, !task.completed); }}
-                        checked={task.completed}
+                        onChange={e => { toogleTask(task.id, !task.is_completed); }}
+                        checked={task.is_completed}
                         color="secondary" />
                     </TableCell>
                     <TableCell align='center' component='th' scope='row'>{task.id}</TableCell>

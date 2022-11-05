@@ -1,24 +1,17 @@
-# README
+# Ruby Api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+```bash
+bundle install
+```
 
-* Ruby version
+```bash
+rails db:migrate
+```
 
-* System dependencies
+```bash
+rails s
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Api runs on port 3000

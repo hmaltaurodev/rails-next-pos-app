@@ -58,7 +58,7 @@ function ShowTask() {
               {task.description}
             </Typography>
             <Typography component='div'>
-              Status: { task.completed ? 'Completed' : 'To do' }
+              Status: { task.is_completed ? 'Completed' : 'To do' }
             </Typography>
           </StyledPaper>
         </Grid>

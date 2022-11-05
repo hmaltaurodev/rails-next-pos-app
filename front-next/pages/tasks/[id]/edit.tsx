@@ -18,7 +18,7 @@ function EditTask() {
   const { id } = router.query;
   const { handleSubmit, setValue, control } = useForm({
     defaultValues: {
-      completed: false,
+      is_completed: false,
       description: '',
       category_id: '',
       person_in_charge_id: ''
@@ -49,7 +49,7 @@ function EditTask() {
   }
 
   const resetTask = () => {
-    setValue('completed', task.completed, { shouldDirty: true });
+    setValue('is_completed', task.is_completed, { shouldDirty: true });
     setValue('description', task.description, { shouldDirty: true });
     setValue('category_id', task.category_id, { shouldDirty: true });
     setValue('person_in_charge_id', task.person_in_charge_id, { shouldDirty: true });
@@ -71,7 +71,7 @@ function EditTask() {
 
   useEffect(() => {
     if (task) {
-      setValue('completed', task.completed, { shouldDirty: true });
+      setValue('is_completed', task.is_completed, { shouldDirty: true });
       setValue('description', task.description, { shouldDirty: true });
       setValue('category_id', task.category_id, { shouldDirty: true });
       setValue('person_in_charge_id', task.person_in_charge_id, { shouldDirty: true });

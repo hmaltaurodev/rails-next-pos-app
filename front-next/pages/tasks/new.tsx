@@ -17,7 +17,7 @@ function NewTask() {
   const router = useRouter();
   const { handleSubmit, setValue, control } = useForm({
     defaultValues: {
-      completed: false,
+      is_completed: false,
       description: '',
       category_id: '',
       person_in_charge_id: ''

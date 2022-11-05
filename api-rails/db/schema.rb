@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_02_150057) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.boolean "completed"
+    t.boolean "is_completed"
     t.string "description"
     t.integer "category_id", null: false
     t.integer "person_in_charge_id", null: false
