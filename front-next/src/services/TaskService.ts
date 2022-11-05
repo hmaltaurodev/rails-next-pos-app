@@ -30,6 +30,20 @@ const TaskService = {
 
     const response = await axiosInstance.put(`/tasks/${id}`, { task: task })
     return response.data
+  },
+
+  complete: async (id: number) => {
+    if (!id) return
+
+    const response = await axiosInstance.patch(`/tasks/complete/${id}`)
+    return response.data
+  },
+
+  todo: async (id: number) => {
+    if (!id) return
+
+    const response = await axiosInstance.patch(`/tasks/todo/${id}`)
+    return response.data
   }
 }
 

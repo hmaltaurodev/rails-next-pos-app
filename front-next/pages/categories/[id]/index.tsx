@@ -61,10 +61,10 @@ function ShowCategory() {
         </Grid>
         <Grid item>
           <StyledPaper>
-            <Typography component='div' variant='body2' color='text.secondary'>
+            <Typography component='div'>
               Created At: {formatDate(category.created_at)}
             </Typography>
-            <Typography component='div' variant='body2' color='text.secondary'>
+            <Typography component='div'>
               Updated At: {formatDate(category.updated_at)}
             </Typography>
           </StyledPaper>

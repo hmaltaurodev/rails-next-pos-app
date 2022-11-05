@@ -36,10 +36,33 @@ function TaskList() {
   }
 
   const toogleTask = (id: number, isCompleted: boolean) => {
-    if (isCompleted)
-      toast.success('Task marked as completed sucessfully!');
-    else
-      toast.success('Task marked as to do successfully!');
+    setIsLoading(true);
+    if (isCompleted) {
+      TaskService.complete(id)
+        .then((data) => {
+          getTasks().then(() => {
+            setIsLoading(false);
+            toast.info('Task marked as completeds sucessfully!');
+          });
+        })
+        .catch((e) => {
+          setIsLoading(false);
+          toast.error(`Error when mark task as completeds: ${e.message}`);
+        });
+    }
+    else {
+      TaskService.todo(id)
+        .then((data) => {
+          getTasks().then(() => {
+            setIsLoading(false);
+            toast.info('Task marked as to do sucessfully!');
+          });
+        })
+        .catch((e) => {
+          setIsLoading(false);
+          toast.error(`Error when mark task as to do: ${e.message}`);
+        });
+    }
   }
 
   useEffect(() => {
@@ -48,10 +71,6 @@ function TaskList() {
       setIsLoading(false);
     });
   }, []);
-
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
 
   if (isLoading) return <LinearProgress />;
 

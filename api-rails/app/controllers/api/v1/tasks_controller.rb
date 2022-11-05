@@ -1,9 +1,9 @@
 class Api::V1::TasksController < ApplicationController
-  before_action :set_task, only: %i[ show update destroy ]
+  before_action :set_task, only: %i[ show update destroy set_completed set_todo ]
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = Task.all.order(completed: :asc)
 
     render json: @tasks, include: [:category, :person_in_charge]
   end
@@ -27,6 +27,28 @@ class Api::V1::TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
+      render json: @task, include: [:category, :person_in_charge]
+    else
+      render json: @task.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH /tasks/complete/1
+  def set_completed
+    @task.completed = true
+
+    if @task.save!
+      render json: @task, include: [:category, :person_in_charge]
+    else
+      render json: @task.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH /tasks/todo/1
+  def set_todo
+    @task.completed = false
+
+    if @task.save!
       render json: @task, include: [:category, :person_in_charge]
     else
       render json: @task.errors, status: :unprocessable_entity

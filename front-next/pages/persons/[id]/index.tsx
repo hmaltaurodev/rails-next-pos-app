@@ -61,10 +61,10 @@ function ShowPerson() {
         </Grid>
         <Grid item>
           <StyledPaper>
-            <Typography component='div' variant='body2' color='text.secondary'>
+            <Typography component='div'>
               Created At: {formatDate(person.created_at)}
             </Typography>
-            <Typography component='div' variant='body2' color='text.secondary'>
+            <Typography component='div'>
               Updated At: {formatDate(person.updated_at)}
             </Typography>
           </StyledPaper>
